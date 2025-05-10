@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pemindahan - Tabung Haji</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .header img {
+      height: 60px;
+      margin-right: 10px;
+    }
+
+    .header h1 {
+      font-size: 22px;
+      color: #006c3c;
+    }
+
+    .transfer-form, .receipt {
+      background-color: #fff;
+      padding: 25px;
+      border-radius: px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 360px;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      color: #006c3c;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      font-weight: bold;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      background-color: #006c3c;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .submit-btn:hover {
+      background-color: #004d2b;
+    }
+
+    .receipt {
+      display: none;
+    }
+
+    .receipt p {
+      margin: 8px 0;
+    }
+
+    .note {
+      font-size: 12px;
+      color: #777;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .highlight {
+      background: #d4edda;
+      color: #155724;
+      padding: 10px;
+      border-radius: 6px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <img src="tabung haji.png" alt="Tabung Haji">
+    <h1>Tabung Haji</h1>
+  </div>
+
+  <form class="transfer-form" id="transferForm">
+    <h2>Pemindahan Dana</h2>
+
+    <div class="form-group">
+      <label>Nama Penuh</label>
+      <input type="text" id="fullname" required />
+    </div>
+
+    <div class="form-group">
+      <label>Nombor Akaun Anda</label>
+      <input type="text" id="account" required />
+    </div>
+
+    <div class="form-group">
+      <label>Nombor Akaun Penerima</label>
+      <input type="text" id="recipient" required />
+    </div>
+
+    <div class="form-group">
+      <label>Jumlah (RM)</label>
+      <input type="number" id="amount" step="0.01" required />
+    </div>
+
+    <button type="submit" class="submit-btn">Hantar</button>
+  </form>
+
+  <div class="receipt" id="receiptBox">
+    <h2>Resit Pemindahan</h2>
+    <div class="highlight">
+      <p><strong>Nama:</strong> <span id="rFullName"></span></p>
+      <p><strong>Akaun Penghantar:</strong> <span id="rAccount"></span></p>
+      <p><strong>Akaun Penerima:</strong> <span id="rRecipient"></span></p>
+      <p><strong>Jumlah:</strong> RM <span id="rAmount"></span></p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('transferForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      document.getElementById('rFullName').textContent = document.getElementById('fullname').value;
+      document.getElementById('rAccount').textContent = document.getElementById('account').value;
+      document.getElementById('rRecipient').textContent = document.getElementById('recipient').value;
+      document.getElementById('rAmount').textContent = parseFloat(document.getElementById('amount').value).toFixed(2);
+
+      document.getElementById('receiptBox').style.display = 'block';
+      document.getElementById('transferForm').style.display = 'none';
+    });
+  </script>
+
+</body>
+</html>
